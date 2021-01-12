@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getRandomJoke, getAllCategories } from "../actions/jokeActions";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import categoryStyles from "./categories.module.css";
 
 // TS props is an array of strings with each category name from API
@@ -43,4 +43,4 @@ const Categories: React.FC<Props> = ({ categories }) => {
   );
 };
 
-export default connect(null)(Categories);
+export default Categories;

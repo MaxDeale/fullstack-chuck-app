@@ -30,7 +30,7 @@ const RandomJokeType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    categories: {
+    getCategories: {
       type: new GraphQLList(JokeCategoryType),
       resolve(parent, args) {
         return axios

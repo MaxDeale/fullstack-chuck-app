@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import chuck1 from "../chuck1.jpg";
 import Categories from "../components/Categories";
-import { request } from "graphql-request";
 
 const HomeScreen: React.FC = () => {
   const [categoriesFromAPI, setCategoriesFromAPI] = useState([]);
