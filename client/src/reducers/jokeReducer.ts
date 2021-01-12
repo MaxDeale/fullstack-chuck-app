@@ -30,7 +30,7 @@ export const jokeReducer = (state = initialState, action: any) => {
     case GET_RANDOM_JOKE:
       return {
         ...state,
-        joke: action.payload,
+        randomJoke: action.payload,
       };
   }
 };
