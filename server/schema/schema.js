@@ -5,10 +5,7 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLSchema,
-  GraphQLID,
-  GraphQLInt,
   GraphQLList,
-  GraphQLNonNull,
 } = graphql;
 
 const JokeCategoryType = new GraphQLObjectType({
