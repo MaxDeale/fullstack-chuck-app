@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import categoryStyles from "./categories.module.css";
+
+// TS props is an array of strings with each category name from API
 
 interface Props {
   categories: string[];
 }
 
 const Categories: React.FC<Props> = ({ categories }) => {
+  const [jokeCategory, setJokeCategory] = useState("");
+
+  const categoryClickHandler = (e: any) => {
+    //must send this to redux
+    setJokeCategory(e.target.innerHTML);
+    console.log(jokeCategory);
+  };
+
   return (
     <div>
       <h2>Joke Categories:</h2>
@@ -14,7 +26,9 @@ const Categories: React.FC<Props> = ({ categories }) => {
         {categories.map((cat) => {
           return (
             <div className={categoryStyles.categoryItem}>
-              <button>{cat}</button>
+              <Link to="/randomJoke">
+                <button onClick={categoryClickHandler}>{cat}</button>
+              </Link>
             </div>
           );
         })}

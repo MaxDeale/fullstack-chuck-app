@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import chuck1 from "../chuck1.jpg";
 import Categories from "../components/Categories";
-import { gql } from "@apollo/client";
-import { client } from "../apollo/client";
+import { request } from "graphql-request";
 
 const HomeScreen: React.FC = () => {
-  const [category, setCategory] = useState("");
+  const [categoriesFromAPI, setCategoriesFromAPI] = useState([]);
 
   const categories: string[] = [
     "animal",

@@ -7,8 +7,12 @@ interface Props {
   };
 }
 
-const JokeScreen: React.FC<Props> = ({ joke }) => {
-  return <div></div>;
+const JokeScreen: React.FC<Props> = ({ joke: { id, value } }) => {
+  return (
+    <div>
+      <h2>{value}</h2>
+    </div>
+  );
 };
 
 export default JokeScreen;
