@@ -45,7 +45,7 @@ const RootQuery = new GraphQLObjectType({
         category: { type: GraphQLString },
       },
       resolve(parent, args) {
-        const category = "food";
+        // const category = "food";
         return axios
           .get(
             `https://api.chucknorris.io/jokes/random?category=${args.category}`

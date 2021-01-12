@@ -20,6 +20,7 @@ const initialState = {
     "travel",
   ],
   randomJoke: "Chuck lol",
+  loading: true,
 };
 
 export const jokeReducer = (state = initialState, action: any) => {
@@ -29,6 +30,19 @@ export const jokeReducer = (state = initialState, action: any) => {
     case GET_RANDOM_JOKE:
       return {
         ...state,
+        joke: action.payload,
+      };
+  }
+};
+
+export const getAllCategoriesReducer = (state = initialState, action: any) => {
+  switch (action.type) {
+    default:
+      return state;
+    case GET_ALL_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload,
       };
   }
 };

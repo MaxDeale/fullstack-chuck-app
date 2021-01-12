@@ -1,16 +1,16 @@
 import { GET_RANDOM_JOKE, GET_ALL_CATEGORIES } from "./types";
-import { request, gql } from "graphql-request";
+import { request, gql, GraphQLClient } from "graphql-request";
 
-const randomJokeQuery = gql`
-  {
-    randomJokeByCategory(category: "animal") {
-      id
-      value
+export const getRandomJoke = (category: string) => (dispatch: any) => {
+  const randomJokeQuery = gql`
+    {
+      randomJokeByCategory(category: getRandomJoke.category) {
+        id
+        value
+      }
     }
-  }
-`;
-export const getRandomJoke = () => (dispatch: any) => {
-  request("https://localhost:5000/graphql", randomJokeQuery)
+  `;
+  request("https://localhost:5000/graphql", randomJokeQuery, category)
     .then((joke) => console.log(joke))
     .then((joke) =>
       dispatch({
@@ -19,3 +19,5 @@ export const getRandomJoke = () => (dispatch: any) => {
       })
     );
 };
+
+export const getAllCategories = () => (dispatch: any) => {};

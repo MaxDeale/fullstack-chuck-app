@@ -1,4 +1,6 @@
 import React from "react";
+import approved from "../approved.jpg";
+import { Link } from "react-router-dom";
 
 interface Props {
   joke: {
@@ -10,7 +12,13 @@ interface Props {
 const JokeScreen: React.FC<Props> = ({ joke: { id, value } }) => {
   return (
     <div>
+      <img src={approved} alt="" />
       <h2>{value}</h2>
+      <div>
+        <Link to="/">
+          <button>Back Home</button>
+        </Link>
+      </div>
     </div>
   );
 };

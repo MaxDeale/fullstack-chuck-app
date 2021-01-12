@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import { getRandomJoke, getAllCategories } from "../actions/jokeActions";
+import { connect, useDispatch, useSelector } from "react-redux";
 import categoryStyles from "./categories.module.css";
 
 // TS props is an array of strings with each category name from API
@@ -10,6 +11,9 @@ interface Props {
 }
 
 const Categories: React.FC<Props> = ({ categories }) => {
+  useEffect(() => {
+    getAllCategories();
+  }, []);
   const [jokeCategory, setJokeCategory] = useState("");
 
   const categoryClickHandler = (e: any) => {
@@ -37,4 +41,4 @@ const Categories: React.FC<Props> = ({ categories }) => {
   );
 };
 
-export default Categories;
+export default connect(null)(Categories);

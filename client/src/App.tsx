@@ -4,6 +4,8 @@ import JokeScreen from "./screens/JokeScreen";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./apollo/client";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
 import "./App.css";
 
 const App = () => {
@@ -12,18 +14,20 @@ const App = () => {
     value: "chuck is a floopy boy",
   };
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <div className="App">
-          <Route exact path="/">
-            <HomeScreen />
-          </Route>
-          <Route path="/randomjoke">
-            <JokeScreen joke={joke} />
-          </Route>
-        </div>
-      </Router>
-    </ApolloProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <Router>
+          <div className="App">
+            <Route exact path="/">
+              <HomeScreen />
+            </Route>
+            <Route path="/randomjoke">
+              <JokeScreen joke={joke} />
+            </Route>
+          </div>
+        </Router>
+      </ApolloProvider>
+    </Provider>
   );
 };
 
