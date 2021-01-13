@@ -11,17 +11,17 @@ interface Props {
   category: string;
 }
 
-const JokeScreen: React.FC<Props> = ({}) => {
+const JokeScreen: React.FC<Props> = () => {
   const dispatch = useDispatch();
 
   const [currentRandomJoke, setCurrentRandomJoke] = useState("");
   const [loading, setLoading] = useState(true);
-  const category = "food";
+  const [currentCategory, setCurrentCategory] = useState("explicit");
 
-  //NOT WORKING
+  //random joke request using category
   const getRandomJokeFromAPI = async () => {
     const res = await axios.get(
-      `https://api.chucknorris.io/jokes/random?category=${category}`
+      `https://api.chucknorris.io/jokes/random?category=${currentCategory}`
     );
     console.log(res.data);
     const retrievedJoke = res.data.value;
@@ -29,8 +29,10 @@ const JokeScreen: React.FC<Props> = ({}) => {
   };
 
   useEffect(() => {
-    dispatch(getRandomJoke(category));
-    console.log(category);
+    let current = localStorage.getItem("current-category");
+    console.log(current);
+    dispatch(getRandomJoke(currentCategory));
+    console.log(currentCategory);
     getRandomJokeFromAPI();
     setLoading(false);
   }, []);

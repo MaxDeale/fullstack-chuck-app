@@ -5,7 +5,7 @@ import {
   GET_RANDOM_JOKE_FAIL,
 } from "../actions/types";
 
-//i have 2 reducers one for the action of retreiving a random joke and a chosen category
+//i have 3 reducers: one for the action of retreiving a random joke , a chosen category
 // and one for retrieving all joke categories
 
 export const jokeReducer = (

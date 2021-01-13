@@ -13,7 +13,7 @@ export const getRandomJoke = (category: string) => async (dispatch: any) => {
   //random joke graphql query
   const randomJokeQuery = gql`
     {
-      randomJokeByCategory(category: getRandomJoke.category) {
+      randomJokeByCategory(category: category) {
         id
         value
       }
@@ -21,9 +21,7 @@ export const getRandomJoke = (category: string) => async (dispatch: any) => {
   `;
 
   // using graphql request package to make request
-  // request("https://localhost:5000/graphql", randomJokeQuery, category)
-  axios
-    .get("https://localhost:5000/graphql")
+  request("https://localhost:5000/graphql", randomJokeQuery, category)
     .then((joke) => console.log(joke))
     .then((jokeData) => {
       try {
