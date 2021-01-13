@@ -50,6 +50,8 @@ export const getChosenCategory = (category: string) => (dispatch: any) => {
   } catch (error) {
     console.log(error);
   }
+
+  return category;
 };
 
 //retrieve all categories action calls apollo query to request categories from backend

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import HomeScreen from "./screens/HomeScreen";
 import JokeScreen from "./screens/JokeScreen";
 import { ApolloProvider } from "@apollo/client";
+import { getChosenCategory } from "./actions/jokeActions";
 import { client } from "./apollo/client";
+import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import axios from "axios";
@@ -23,6 +25,8 @@ const App = () => {
       id: jokeId,
       value: jokeValue,
     };
+
+    console.log(initialJoke);
     setJoke(initialJoke);
     console.log(joke);
   };
@@ -31,7 +35,8 @@ const App = () => {
     setInitialJoke();
   }, []);
   //CHANGE THIS TO VALUE FROM BUTTON
-  const category = "food";
+
+  let category = "dev";
   return (
     //redux store provider wraps whole app, followed by apollo front end request provider
     <Provider store={store}>

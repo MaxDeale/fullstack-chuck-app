@@ -23,7 +23,7 @@ const JokeScreen: React.FC<Props> = ({ category }) => {
       `https://api.chucknorris.io/jokes/random?category=${category}`
     );
     console.log(res.data);
-    const retrievedJoke = res.data;
+    const retrievedJoke = res.data.value;
     setCurrentRandomJoke(retrievedJoke);
   };
 
