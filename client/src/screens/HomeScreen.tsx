@@ -5,6 +5,20 @@ import Categories from "../components/Categories";
 
 const HomeScreen: React.FC = () => {
   const [categoriesFromAPI, setCategoriesFromAPI] = useState([]);
+  let [joke, setJoke] = useState("");
+  //setting a default joke
+  const setInitialJoke = async () => {
+    const res = await axios.get("https://api.chucknorris.io/jokes/random");
+    let jokeId = res.data.id;
+    let jokeValue = res.data.value;
+    let initialJoke = {
+      id: jokeId,
+      value: jokeValue,
+    };
+    console.log(initialJoke);
+    setJoke(jokeValue);
+    console.log(joke);
+  };
 
   const getCategoriesFromAPI = async () => {
     const res = await axios.get("https://api.chucknorris.io/jokes/categories");
@@ -13,12 +27,14 @@ const HomeScreen: React.FC = () => {
 
   useEffect(() => {
     getCategoriesFromAPI();
+    setInitialJoke();
   }, []);
 
   return (
     <div>
       <h1>Chuck Norris Joke Machine</h1>
       <img src={chuck1} alt="chuck pic" />
+      <h5>{joke}</h5>
       <Categories categories={categoriesFromAPI} />
     </div>
   );
