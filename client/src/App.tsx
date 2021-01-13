@@ -31,7 +31,7 @@ const App = () => {
     setInitialJoke();
     console.log(joke);
   }, []);
-
+  const category = "food";
   return (
     //redux store provider wraps whole app, followed by apollo front end request provider
     <Provider store={store}>
@@ -42,7 +42,7 @@ const App = () => {
             <Route
               path="/randomjoke"
               component={JokeScreen}
-              render={(props) => <JokeScreen {...props} joke={joke} />}
+              render={(props) => <JokeScreen {...props} category={category} />}
             />
           </div>
         </Router>
