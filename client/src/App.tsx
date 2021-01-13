@@ -5,28 +5,45 @@ import { ApolloProvider } from "@apollo/client";
 import { client } from "./apollo/client";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import axios from "axios";
 import store from "./store";
 import "./App.css";
 
 const App = () => {
   const [joke, setJoke] = useState({
-    id: "dskfjnaasdlfkn",
-    value: "chuck has 16 nipples",
+    id: "",
+    value: "",
   });
 
-  useEffect(() => {}, []);
+  const setInitialJoke = async () => {
+    const res = await axios.get("https://api.chucknorris.io/jokes/random");
+
+    let jokeId = res.data.id;
+    let jokeValue = res.data.value;
+    let initialJoke = {
+      id: jokeId,
+      value: jokeValue,
+    };
+    setJoke(initialJoke);
+  };
+
+  useEffect(() => {
+    setInitialJoke();
+    console.log(joke);
+  }, []);
+
   return (
     //redux store provider wraps whole app, followed by apollo front end request provider
     <Provider store={store}>
       <ApolloProvider client={client}>
         <Router>
           <div className="App">
-            <Route exact path="/">
-              <HomeScreen />
-            </Route>
-            <Route path="/randomjoke">
-              <JokeScreen joke={joke} />
-            </Route>
+            <Route exact path="/" component={HomeScreen} />
+            <Route
+              path="/randomjoke"
+              component={JokeScreen}
+              render={(props) => <JokeScreen {...props} joke={joke} />}
+            />
           </div>
         </Router>
       </ApolloProvider>

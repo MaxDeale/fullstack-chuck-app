@@ -1,5 +1,6 @@
 import { GET_RANDOM_JOKE, GET_ALL_CATEGORIES } from "./types";
 import { request, gql } from "graphql-request";
+import axios from "axios";
 
 //actions for retrieving random joke and all categories
 
@@ -14,8 +15,11 @@ export const getRandomJoke = (category: string) => async (dispatch: any) => {
       }
     }
   `;
-  //using graphql request package to make request
-  request("https://localhost:5000/graphql", randomJokeQuery, category)
+
+  // using graphql request package to make request
+  // request("https://localhost:5000/graphql", randomJokeQuery, category)
+  axios
+    .get("https://localhost:5000/graphql")
     .then((joke) => console.log(joke))
     .then((jokeData) => {
       try {
@@ -39,12 +43,12 @@ export const getRandomJoke = (category: string) => async (dispatch: any) => {
 export const getAllCategories = () => (dispatch: any) => {
   //get all categories graphql query
   const getCategoriesQuery = gql`
-  {
-    getCategories() {
-      category
+    {
+      getCategories {
+        category
+      }
     }
-  }
-`;
+  `;
   //using graphql request package for request to backend
   request("https://localhost:5000/graphql", getCategoriesQuery)
     .then((categories) => console.log(categories))

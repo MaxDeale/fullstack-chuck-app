@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getRandomJoke, getAllCategories } from "../actions/jokeActions";
 import { useDispatch } from "react-redux";
 import categoryStyles from "./categories.module.css";
+import axios from "axios";
 
 // TS props is an array of strings with each category name from API
 
@@ -29,10 +30,17 @@ const Categories: React.FC<Props> = ({ categories }) => {
       <h2>Joke Categories:</h2>
       <p>Select a category for a random joke</p>
       <div className={categoryStyles.categoriesContainer}>
-        {categories.map((cat) => {
+        {categories.map((cat, index) => {
           return (
-            <div className={categoryStyles.categoryItem}>
-              <Link to="/randomJoke">
+            <div key={index} className={categoryStyles.categoryItem}>
+              <Link
+                to={{
+                  pathname: "/randomJoke",
+                  state: {
+                    chosenCategory: jokeCategory,
+                  },
+                }}
+              >
                 <button onClick={categoryClickHandler}>{cat}</button>
               </Link>
             </div>
