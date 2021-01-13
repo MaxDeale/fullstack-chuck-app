@@ -16,7 +16,7 @@ const JokeScreen: React.FC<Props> = () => {
 
   const [currentRandomJoke, setCurrentRandomJoke] = useState("");
   const [loading, setLoading] = useState(true);
-  const [currentCategory, setCurrentCategory] = useState("explicit");
+  const [currentCategory, setCurrentCategory] = useState("");
 
   //random joke request using category
   const getRandomJokeFromAPI = async () => {
@@ -31,8 +31,8 @@ const JokeScreen: React.FC<Props> = () => {
   useEffect(() => {
     let current = localStorage.getItem("current-category");
     console.log(current);
+    console.log(typeof current);
     dispatch(getRandomJoke(currentCategory));
-    console.log(currentCategory);
     getRandomJokeFromAPI();
     setLoading(false);
   }, []);

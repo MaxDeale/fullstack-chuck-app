@@ -35,10 +35,8 @@ const Categories: React.FC<Props> = ({ categories }) => {
     console.log(jokeCategory);
     dispatch(getChosenCategory(jokeCategory));
     dispatch(getRandomJoke(jokeCategory));
-    let categoryStorage = {
-      current: e.target.innerHTML,
-    };
-    localStorage.setItem("current-category", JSON.stringify(categoryStorage));
+
+    localStorage.setItem("current-category", e.target.innerHTML);
   };
 
   if (loading) {

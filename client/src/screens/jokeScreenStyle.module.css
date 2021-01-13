@@ -24,3 +24,9 @@
   text-transform: uppercase;
   font-size: 1.1rem;
 }
+
+@media (max-width: 600px) {
+  .jokescreenMain img {
+    width: 100%;
+  }
+}
