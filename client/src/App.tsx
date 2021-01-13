@@ -14,10 +14,9 @@ const App = () => {
     id: "",
     value: "",
   });
-
+  //setting a default joke
   const setInitialJoke = async () => {
     const res = await axios.get("https://api.chucknorris.io/jokes/random");
-
     let jokeId = res.data.id;
     let jokeValue = res.data.value;
     let initialJoke = {
@@ -25,12 +24,13 @@ const App = () => {
       value: jokeValue,
     };
     setJoke(initialJoke);
+    console.log(joke);
   };
 
   useEffect(() => {
     setInitialJoke();
-    console.log(joke);
   }, []);
+  //CHANGE THIS TO VALUE FROM BUTTON
   const category = "food";
   return (
     //redux store provider wraps whole app, followed by apollo front end request provider

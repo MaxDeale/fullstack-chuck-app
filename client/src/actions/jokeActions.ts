@@ -1,4 +1,8 @@
-import { GET_RANDOM_JOKE, GET_ALL_CATEGORIES } from "./types";
+import {
+  GET_RANDOM_JOKE,
+  GET_ALL_CATEGORIES,
+  GET_CHOSEN_CATEGORY,
+} from "./types";
 import { request, gql } from "graphql-request";
 import axios from "axios";
 
@@ -34,6 +38,18 @@ export const getRandomJoke = (category: string) => async (dispatch: any) => {
         console.log(error);
       }
     });
+};
+
+//retreive a chosen category by the user
+export const getChosenCategory = (category: string) => (dispatch: any) => {
+  try {
+    dispatch({
+      type: GET_CHOSEN_CATEGORY,
+      payload: category,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 //retrieve all categories action calls apollo query to request categories from backend

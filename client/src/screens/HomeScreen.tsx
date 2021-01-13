@@ -8,8 +8,6 @@ const HomeScreen: React.FC = () => {
 
   const getCategoriesFromAPI = async () => {
     const res = await axios.get("https://api.chucknorris.io/jokes/categories");
-
-    console.log(res);
     setCategoriesFromAPI(res.data);
   };
 

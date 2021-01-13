@@ -1,10 +1,12 @@
 import {
   GET_RANDOM_JOKE,
   GET_ALL_CATEGORIES,
+  GET_CHOSEN_CATEGORY,
   GET_RANDOM_JOKE_FAIL,
 } from "../actions/types";
 
-//i have 2 reducers, one for the action of retreiving a random joke, and one for retrieving all joke categories
+//i have 2 reducers one for the action of retreiving a random joke and a chosen category
+// and one for retrieving all joke categories
 
 export const jokeReducer = (
   state = { randomJoke: { id: "", value: "" } },
@@ -25,6 +27,12 @@ export const jokeReducer = (
         ...state,
         error: action.payload,
         loading: false,
+      };
+
+    case GET_CHOSEN_CATEGORY:
+      return {
+        ...state,
+        chosenCategory: action.payload,
       };
   }
 };
