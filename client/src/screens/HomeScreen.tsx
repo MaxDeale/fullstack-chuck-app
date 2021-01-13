@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import chuck1 from "../chuck1.jpg";
 import axios from "axios";
 import Categories from "../components/Categories";
+import homeScreenStyles from "./homescreen.module.css";
 
 const HomeScreen: React.FC = () => {
   const [categoriesFromAPI, setCategoriesFromAPI] = useState([]);
@@ -17,7 +18,6 @@ const HomeScreen: React.FC = () => {
     };
     console.log(initialJoke);
     setJoke(jokeValue);
-    console.log(joke);
   };
 
   const getCategoriesFromAPI = async () => {
@@ -31,7 +31,7 @@ const HomeScreen: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className={homeScreenStyles.homescreenContainer}>
       <h1>Chuck Norris Joke Machine</h1>
       <img src={chuck1} alt="chuck pic" />
       <h5>{joke}</h5>

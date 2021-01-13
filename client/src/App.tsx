@@ -12,28 +12,6 @@ import store from "./store";
 import "./App.css";
 
 const App = () => {
-  const [joke, setJoke] = useState({
-    id: "",
-    value: "",
-  });
-  //setting a default joke
-  const setInitialJoke = async () => {
-    const res = await axios.get("https://api.chucknorris.io/jokes/random");
-    let jokeId = res.data.id;
-    let jokeValue = res.data.value;
-    let initialJoke = {
-      id: jokeId,
-      value: jokeValue,
-    };
-
-    console.log(initialJoke);
-    setJoke(initialJoke);
-    console.log(joke);
-  };
-
-  useEffect(() => {
-    setInitialJoke();
-  }, []);
   //CHANGE THIS TO VALUE FROM BUTTON
 
   let category = "dev";

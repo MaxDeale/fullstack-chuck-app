@@ -11,11 +11,12 @@ interface Props {
   category: string;
 }
 
-const JokeScreen: React.FC<Props> = ({ category }) => {
-  // const dispatch = useDispatch();
+const JokeScreen: React.FC<Props> = ({}) => {
+  const dispatch = useDispatch();
 
   const [currentRandomJoke, setCurrentRandomJoke] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const category = "food";
 
   //NOT WORKING
   const getRandomJokeFromAPI = async () => {
@@ -28,10 +29,11 @@ const JokeScreen: React.FC<Props> = ({ category }) => {
   };
 
   useEffect(() => {
-    // dispatch(getRandomJoke(category));
+    dispatch(getRandomJoke(category));
     console.log(category);
     getRandomJokeFromAPI();
-  });
+    setLoading(false);
+  }, []);
 
   if (loading) {
     return (
@@ -46,7 +48,7 @@ const JokeScreen: React.FC<Props> = ({ category }) => {
         <h2>{currentRandomJoke}</h2>
         <div>
           <Link to="/">
-            <button>Back Home</button>
+            <button className={jokeScreenStyle.backButton}>Back Home</button>
           </Link>
         </div>
       </div>

@@ -7,6 +7,7 @@ import {
 } from "../actions/jokeActions";
 import { useDispatch } from "react-redux";
 import categoryStyles from "./categories.module.css";
+import JokeScreen from "../screens/JokeScreen";
 import axios from "axios";
 import Loader from "./Loader";
 
@@ -29,12 +30,14 @@ const Categories: React.FC<Props> = ({ categories }) => {
   }, []);
   const [jokeCategory, setJokeCategory] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showJoke, setShowJoke] = useState(false);
 
   const categoryClickHandler = (e: any) => {
     setJokeCategory(e.target.innerHTML);
     console.log(jokeCategory);
     dispatch(getChosenCategory(jokeCategory));
     dispatch(getRandomJoke(jokeCategory));
+    setShowJoke(true);
   };
 
   if (loading) {
