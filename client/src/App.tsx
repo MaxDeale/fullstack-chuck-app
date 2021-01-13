@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HomeScreen from "./screens/HomeScreen";
 import JokeScreen from "./screens/JokeScreen";
 import { ApolloProvider } from "@apollo/client";
@@ -9,11 +9,14 @@ import store from "./store";
 import "./App.css";
 
 const App = () => {
-  let joke = {
-    id: "lksdfjgnsdfg",
-    value: "chuck is a floopy boy",
-  };
+  const [joke, setJoke] = useState({
+    id: "dskfjnaasdlfkn",
+    value: "chuck has 16 nipples",
+  });
+
+  useEffect(() => {}, []);
   return (
+    //redux store provider wraps whole app, followed by apollo front end request provider
     <Provider store={store}>
       <ApolloProvider client={client}>
         <Router>

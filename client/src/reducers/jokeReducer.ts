@@ -1,29 +1,15 @@
-import { GET_RANDOM_JOKE, GET_ALL_CATEGORIES } from "../actions/types";
+import {
+  GET_RANDOM_JOKE,
+  GET_ALL_CATEGORIES,
+  GET_RANDOM_JOKE_FAIL,
+} from "../actions/types";
 
-const initialState = {
-  categories: [
-    "animal",
-    "career",
-    "celebrity",
-    "dev",
-    "explicit",
-    "fashion",
-    "food",
-    "history",
-    "money",
-    "movie",
-    "music",
-    "political",
-    "religion",
-    "science",
-    "sport",
-    "travel",
-  ],
-  randomJoke: "Chuck lol",
-  loading: true,
-};
+//i have 2 reducers, one for the action of retreiving a random joke, and one for retrieving all joke categories
 
-export const jokeReducer = (state = initialState, action: any) => {
+export const jokeReducer = (
+  state = { randomJoke: { id: "", value: "" } },
+  action: any
+) => {
   switch (action.type) {
     default:
       return state;
@@ -31,11 +17,25 @@ export const jokeReducer = (state = initialState, action: any) => {
       return {
         ...state,
         randomJoke: action.payload,
+        loading: false,
+      };
+
+    case GET_RANDOM_JOKE_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
       };
   }
 };
 
-export const getAllCategoriesReducer = (state = initialState, action: any) => {
+//the categories reducer will take the request from the action, and save the array of category strings to state
+export const getAllCategoriesReducer = (
+  state = {
+    categories: [],
+  },
+  action: any
+) => {
   switch (action.type) {
     default:
       return state;
@@ -43,6 +43,7 @@ export const getAllCategoriesReducer = (state = initialState, action: any) => {
       return {
         ...state,
         categories: action.payload,
+        loading: false,
       };
   }
 };
