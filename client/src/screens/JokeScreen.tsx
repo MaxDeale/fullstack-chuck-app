@@ -6,7 +6,6 @@ import jokeScreenStyle from "./jokeScreenStyle.module.css";
 // import { getRandomJoke } from "../actions/jokeActions";
 import Loader from "../components/Loader";
 import axios from "axios";
-import { isJSDocPublicTag } from "typescript";
 
 interface Props {
   category: string;
