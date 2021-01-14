@@ -27,3 +27,17 @@
   text-transform: uppercase;
   font-size: 1.1rem;
 }
+
+@media (max-width: 670px) {
+  .categoriesContainer {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  .categoryItem {
+    width: 100%;
+  }
+  .categoryItem button {
+    width: 100%;
+  }
+}

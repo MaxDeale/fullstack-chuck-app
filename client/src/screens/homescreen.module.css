@@ -18,3 +18,13 @@
 .homescreenContainer h5 {
   color: rgb(255, 196, 0);
 }
+
+@media (max-width: 670px) {
+  .homescreenContainer h1 {
+    font-size: 1.5rem;
+  }
+
+  .homescreenContainer img {
+    width: 50%;
+  }
+}
