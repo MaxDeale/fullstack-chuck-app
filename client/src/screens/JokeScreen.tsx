@@ -32,9 +32,9 @@ const JokeScreen: React.FC<Props> = ({ category }) => {
   useEffect(() => {
     //dispatching action to reducer to get current joke from graphql backend
     // dispatch(getRandomJoke(currentCategory));
-    let current = localStorage.getItem("current-category");
-    let newCur = JSON.stringify(current);
-    setCurrentCategory(newCur);
+    let current = localStorage.getItem("current-category") || "";
+
+    setCurrentCategory(current);
     getRandomJokeFromAPI(currentCategory);
     setLoading(false);
   }, [currentCategory]);
