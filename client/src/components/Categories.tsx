@@ -26,7 +26,7 @@ const Categories: React.FC<Props> = ({ categories }) => {
     } else {
       setLoading(false);
     }
-  }, []);
+  }, [dispatch, categories]);
   const [jokeCategory, setJokeCategory] = useState("");
   const [loading, setLoading] = useState(false);
 

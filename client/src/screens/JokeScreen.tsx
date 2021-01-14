@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import approved from "../approved.jpg";
 import { Link } from "react-router-dom";
 import jokeScreenStyle from "./jokeScreenStyle.module.css";
-import { useDispatch } from "react-redux";
-import { getRandomJoke } from "../actions/jokeActions";
+// import { useDispatch } from "react-redux";
+// import { getRandomJoke } from "../actions/jokeActions";
 import Loader from "../components/Loader";
 import axios from "axios";
 
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const JokeScreen: React.FC<Props> = ({ category }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [currentRandomJoke, setCurrentRandomJoke] = useState("");
   const [loading, setLoading] = useState(true);
