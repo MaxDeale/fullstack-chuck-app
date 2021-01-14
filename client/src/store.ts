@@ -12,6 +12,8 @@ const reducer = combineReducers({
   allCategories: getAllCategoriesReducer,
 });
 
+export type AppState = ReturnType<typeof reducer>;
+
 //using thunk middleware for calling async dispatch
 const middleware = [thunk];
 

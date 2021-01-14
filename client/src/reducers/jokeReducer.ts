@@ -4,8 +4,10 @@ import {
   GET_CHOSEN_CATEGORY,
   GET_RANDOM_JOKE_FAIL,
 } from "../actions/types";
+// import { Joke } from "../types/Joke";
+// import { Categories } from "../types/Categories";
 
-//i have 3 reducers: one for the action of retreiving a random joke , a chosen category
+//i have 2 reducers: one for the action of retreiving a random joke and a chosen category
 // and one for retrieving all joke categories
 
 export const jokeReducer = (

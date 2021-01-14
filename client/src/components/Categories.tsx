@@ -7,7 +7,6 @@ import {
 } from "../actions/jokeActions";
 import { useDispatch } from "react-redux";
 import categoryStyles from "./categories.module.css";
-import axios from "axios";
 import Loader from "./Loader";
 
 // TS props is an array of strings with each category name from API
@@ -20,6 +19,7 @@ const Categories: React.FC<Props> = ({ categories }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    //dispatching action to reducer to retrieve all categories from graphql backend and setting to redux store state
     dispatch(getAllCategories());
     if (!categories) {
       setLoading(true);
@@ -33,9 +33,13 @@ const Categories: React.FC<Props> = ({ categories }) => {
   const categoryClickHandler = (e: any) => {
     setJokeCategory(e.target.innerHTML);
     console.log(jokeCategory);
-    dispatch(getChosenCategory(jokeCategory));
-    dispatch(getRandomJoke(jokeCategory));
-
+    //creating object from string in order to ensure type safety
+    let categoryObject = {
+      category: jokeCategory,
+    };
+    //passing the object into the action to send to reducer
+    dispatch(getRandomJoke(categoryObject));
+    dispatch(getChosenCategory(categoryObject));
     localStorage.setItem("current-category", e.target.innerHTML);
   };
 

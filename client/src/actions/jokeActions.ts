@@ -4,12 +4,13 @@ import {
   GET_CHOSEN_CATEGORY,
 } from "./types";
 import { request, gql } from "graphql-request";
-import axios from "axios";
+
+import { ChosenCategory } from "../types/ChosenCategory";
 
 //actions for retrieving random joke and all categories
 
 //random joke action takes in category as argument, calls apollo request to graphql backend
-export const getRandomJoke = (category: string) => async (dispatch: any) => {
+export const getRandomJoke = (category: ChosenCategory) => (dispatch: any) => {
   //random joke graphql query
   const randomJokeQuery = gql`
     {
@@ -35,11 +36,15 @@ export const getRandomJoke = (category: string) => async (dispatch: any) => {
       } catch (error) {
         console.log(error);
       }
+      let jokeFromBackend = jokeData;
+      return jokeFromBackend;
     });
 };
 
 //retreive a chosen category by the user
-export const getChosenCategory = (category: string) => (dispatch: any) => {
+export const getChosenCategory = (category: ChosenCategory) => (
+  dispatch: any
+) => {
   try {
     dispatch({
       type: GET_CHOSEN_CATEGORY,
@@ -79,5 +84,7 @@ export const getAllCategories = () => (dispatch: any) => {
       } catch (error) {
         console.log(error);
       }
+      let categoriesFromBackend = categoriesData;
+      return categoriesFromBackend;
     });
 };
