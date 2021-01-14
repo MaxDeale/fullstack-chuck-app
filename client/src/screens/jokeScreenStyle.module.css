@@ -7,6 +7,20 @@
   padding: 2rem;
   color: rgb(255, 196, 0);
 }
+.jokescreenMain h3 {
+  padding: 2rem;
+  color: rgb(255, 196, 0);
+}
+
+.jokescreenMain img {
+  width: 50%;
+  transition: all 1s;
+}
+
+.jokescreenMain img:hover {
+  opacity: 0.7;
+  transform: scale(0.4);
+}
 
 .backButton {
   padding: 1rem;

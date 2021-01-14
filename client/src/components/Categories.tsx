@@ -40,6 +40,7 @@ const Categories: React.FC<Props> = ({ categories }) => {
     //passing the object into the action to send to reducer
     dispatch(getRandomJoke(categoryObject));
     dispatch(getChosenCategory(categoryObject));
+
     localStorage.setItem("current-category", e.target.innerHTML);
   };
 

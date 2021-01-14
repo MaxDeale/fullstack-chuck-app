@@ -6,6 +6,7 @@ import jokeScreenStyle from "./jokeScreenStyle.module.css";
 // import { getRandomJoke } from "../actions/jokeActions";
 import Loader from "../components/Loader";
 import axios from "axios";
+import { isJSDocPublicTag } from "typescript";
 
 interface Props {
   category: string;
@@ -16,7 +17,7 @@ const JokeScreen: React.FC<Props> = ({ category }) => {
 
   const [currentRandomJoke, setCurrentRandomJoke] = useState("");
   const [loading, setLoading] = useState(true);
-  const [currentCategory, setCurrentCategory] = useState("");
+  const [currentCategory, setCurrentCategory] = useState("movie");
 
   //random joke request using category (axios)
   const getRandomJokeFromAPI = async (cur: string) => {
@@ -32,8 +33,8 @@ const JokeScreen: React.FC<Props> = ({ category }) => {
     //dispatching action to reducer to get current joke from graphql backend
     // dispatch(getRandomJoke(currentCategory));
     let current = localStorage.getItem("current-category");
-    current = JSON.stringify(current);
-    setCurrentCategory(current);
+    let newCur = JSON.stringify(current);
+    setCurrentCategory(newCur);
     getRandomJokeFromAPI(currentCategory);
     setLoading(false);
   }, [currentCategory]);
@@ -48,7 +49,9 @@ const JokeScreen: React.FC<Props> = ({ category }) => {
     return (
       <div className={jokeScreenStyle.jokescreenMain}>
         <img src={approved} alt="" />
-        <h3>Category:{currentCategory}</h3>
+        <h3>
+          Category: <span style={{ color: "white" }}> {currentCategory}</span>
+        </h3>
         <h2>{currentRandomJoke}</h2>
         <div>
           <Link to="/">
