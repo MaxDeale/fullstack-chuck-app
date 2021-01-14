@@ -16,18 +16,14 @@ const JokeScreen: React.FC<Props> = ({ category }) => {
 
   const [currentRandomJoke, setCurrentRandomJoke] = useState("");
   const [loading, setLoading] = useState(true);
-  const [currentCategory, setCurrentCategory] = useState("food");
+  const [currentCategory, setCurrentCategory] = useState("");
 
   //random joke request using category (axios)
   const getRandomJokeFromAPI = async (cur: string) => {
-    let current = localStorage.getItem("current-category");
-    current = JSON.stringify(current);
-    console.log(current);
-    setCurrentCategory(current);
-    const res = await axios.get(
-      `https://api.chucknorris.io/jokes/random?category=${cur}`
-    );
-    console.log(res.data);
+    const query = `https://api.chucknorris.io/jokes/random?category=${cur}`;
+    console.log(query);
+    const res = await axios.get(query);
+    // console.log(res.data);
     const retrievedJoke = res.data.value;
     setCurrentRandomJoke(retrievedJoke);
   };
@@ -35,8 +31,9 @@ const JokeScreen: React.FC<Props> = ({ category }) => {
   useEffect(() => {
     //dispatching action to reducer to get current joke from graphql backend
     // dispatch(getRandomJoke(currentCategory));
-
-    console.log(currentCategory);
+    let current = localStorage.getItem("current-category");
+    current = JSON.stringify(current);
+    setCurrentCategory(current);
     getRandomJokeFromAPI(currentCategory);
     setLoading(false);
   }, [currentCategory]);
@@ -51,6 +48,7 @@ const JokeScreen: React.FC<Props> = ({ category }) => {
     return (
       <div className={jokeScreenStyle.jokescreenMain}>
         <img src={approved} alt="" />
+        <h3>Category:{currentCategory}</h3>
         <h2>{currentRandomJoke}</h2>
         <div>
           <Link to="/">
