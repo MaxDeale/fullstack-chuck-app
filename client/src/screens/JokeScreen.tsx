@@ -11,7 +11,7 @@ interface Props {
   category: string;
 }
 
-const JokeScreen: React.FC<Props> = ({ category }) => {
+const JokeScreen: React.FC<Props> = () => {
   // const dispatch = useDispatch();
 
   const [currentRandomJoke, setCurrentRandomJoke] = useState("");
